@@ -103,6 +103,7 @@
 				})
 			
 				createDodecahedrons();
+				createOrbitParticles();
 			}
 		
 			function createDodecahedrons(){
@@ -140,6 +141,30 @@
 				outerDodec = new THREE.Mesh(outerGeometry, outerMaterial);
 				outerDodec.position.y = 2;
 				markerRoot1.add(outerDodec);
+			}
+
+			function createOrbitParticles(){
+				for(let i = 0; i < 100; i++){		
+			    	let size = 0.02 + Math.random() * 0.05;
+					let particleGeometry = new THREE.SphereGeometry(size, 12, 12);
+			    	let hue = 0.71 + Math.random() * 0.15;
+        			let color = new THREE.Color();
+        			color.setHSL(hue, 0.8, 0.6);
+
+        			let particleMaterial = new THREE.MeshBasicMaterial({color: color});
+				
+			        let p = new THREE.Mesh(particleGeometry, particleMaterial);
+				
+			        p.userData = {
+			            angle: Math.random() * Math.PI * 2,
+			            radius: 1.2 + Math.random() * 0.4,
+			            speed: 0.2 + Math.random()
+			        };
+				
+			        p.position.y = 2 + Math.random() * 0.5;
+			        markerRoot1.add(p);
+			        orbitParticles.push(p);
+			    }
 			}
 		
 			function update(){
