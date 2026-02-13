@@ -130,7 +130,7 @@
 				middleDodec.position.y = 2;
 				markerRoot1.add(middleDodec);
 			
-				// Outer figure (largest, wireframe, yellow)
+				// Outer figure (largest, wireframe, blue)
 				let outerGeometry = new THREE.DodecahedronGeometry(0.8, 0);
 				let outerMaterial = new THREE.MeshBasicMaterial({ 
 					color: 0x155DFC ,
@@ -146,6 +146,20 @@
 				// update artoolkit on every frame
 				if (arToolkitSource.ready !== false)
 					arToolkitContext.update(arToolkitSource.domElement);
+			
+				// Rotate figure in different directions and speeds
+				if (innerDodec){
+					innerDodec.rotation.x += 0.02;
+					innerDodec.rotation.y += 0.025;
+				}
+				if (middleDodec){
+					middleDodec.rotation.x -= 0.010;
+					middleDodec.rotation.y += 0.002;
+				}
+				if (outerDodec){
+					outerDodec.rotation.x += 0.001;
+					outerDodec.rotation.y -= 0.010;
+				}
 			}
 		
 			function render(){
