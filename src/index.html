@@ -129,6 +129,17 @@
 				middleDodec = new THREE.Mesh(middleGeometry, middleMaterial);
 				middleDodec.position.y = 2;
 				markerRoot1.add(middleDodec);
+			
+				// Outer figure (largest, wireframe, yellow)
+				let outerGeometry = new THREE.DodecahedronGeometry(0.8, 0);
+				let outerMaterial = new THREE.MeshBasicMaterial({ 
+					color: 0x155DFC ,
+					wireframe: true,
+					wireframeLinewidth: 2
+				});
+				outerDodec = new THREE.Mesh(outerGeometry, outerMaterial);
+				outerDodec.position.y = 2;
+				markerRoot1.add(outerDodec);
 			}
 		
 			function update(){
