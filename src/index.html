@@ -144,7 +144,7 @@
 			}
 
 			function createOrbitParticles(){
-				for(let i = 0; i < 100; i++){		
+				for(let i = 0; i < 200; i++){		
 			    	let size = 0.02 + Math.random() * 0.05;
 					let particleGeometry = new THREE.SphereGeometry(size, 12, 12);
 			    	let hue = 0.71 + Math.random() * 0.15;
@@ -184,6 +184,14 @@
 				if (outerDodec){
 					outerDodec.rotation.x += 0.001;
 					outerDodec.rotation.y -= 0.010;
+				}
+
+				// Update orbit particles
+				for(let i = 0; i < orbitParticles.length; i++){
+					let p = orbitParticles[i];
+					p.userData.angle += 0.005 * p.userData.speed;
+					p.position.x = Math.cos(p.userData.angle) * p.userData.radius;
+					p.position.z = Math.sin(p.userData.angle) * p.userData.radius;
 				}
 			}
 		
